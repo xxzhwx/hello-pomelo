@@ -10,9 +10,12 @@ app.set('name', 'hello-pomelo');
 app.configure('production|development', 'connector', function(){
   app.set('connectorConfig',
     {
-      connector : pomelo.connectors.mqttconnector,
-      publishRoute: 'connector.entryHandler.publish',
-      subscribeRoute: 'connector.entryHandler.subscribe'
+      connector : pomelo.connectors.sioconnector,
+      transports : ['websocket'],
+      heartbeats : true,
+      closeTimeout : 60,
+      heartbeatTimeout : 60,
+      heartbeatInterval : 25
     });
 });
 
